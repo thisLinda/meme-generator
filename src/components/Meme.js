@@ -1,17 +1,23 @@
+import React, {useState} from 'react'
 import memesData from "../memesData"
 
 export default function Meme(props) {
-    // function handleClick() {
-    //     console.log('a random url')
-    // }
+    const [meme, setMeme] = useState({
+        topText: '',
+        bottomText: '',
+        randomImage: 'http://i.imgflip.com/1bij.jpg'
+    })
+
+    const [allMemeImages, setAllMemeImages] = useState(memesData)
+
     function getMemeImage() {
-        // console.log('clicked')
-        const memesArray = memesData.data.memes
+        const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
-        // console.log(randomNumber)
-        // const url = memesArray[randomNumber].url
-        const {url} = memesArray[randomNumber]
-        console.log({url})
+        const url = memesArray[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImage: url
+        }))
     }
 
     return (
@@ -25,7 +31,6 @@ export default function Meme(props) {
                     type='text'
                     placeholder='Bottom text' className='form--input'
                 />
-                {/* <button onClick={handleClick}>rplease click</button> */}
                 <button 
                     className='form--button'        type='button'
                     onClick={getMemeImage}
@@ -33,10 +38,9 @@ export default function Meme(props) {
                     Get a new meme image 🖼
                 </button>
             </div>
-            {/* <div className='meme--image'>
-                <img src={`./assets/${props.data.memes.url}`} alt='randomly generated meme' />
-            </div> */}
+            <div className='meme--image'>
+                <img src={meme.randomImage} className='meme--image' />
+            </div>
         </main>
-        
     )
 }
