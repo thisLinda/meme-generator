@@ -1,5 +1,8 @@
 <div id="top"></div>
 
+## Deployed on AWS Amplify
+https://main...amplifyapp.com 
+
 ## About the Project
 This is the Scrimba Learn React Instruction Project 3. Target learning: state and effect hooks (as well as event listening, conditional rendering, forms). 
 
